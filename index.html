@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BP CLIMATIZACION</title>
+    <!-- Iconos profesionales -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        :root {
+            --azul-bp: #0062B1;      /* Azul oficial del logo */
+            --naranja-bp: #E28537;   /* Naranja oficial del logo */
+            --gris-bp: #5B5B5F;      /* Gris oficial del texto */
+            --gris-fondo: #F4F6F9;
+            --blanco: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gris-fondo);
+            color: #333;
+        }
+
+        /* Encabezado Institucional con tu Logo */
+        header {
+            background-color: var(--blanco);
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-bottom: 4px solid var(--azul-bp);
+        }
+
+        .logo-img {
+            max-width: 140px;
+            height: auto;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            padding: 0 15px 40px 15px;
+        }
+
+        /* Capas de menús intuitivas */
+        .menu-capa {
+            background: var(--blanco);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 6px solid var(--azul-bp);
+        }
+
+        .menu-capa:active {
+            transform: scale(0.97);
+        }
+
+        .flex-menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Botón de acción principal */
+        .btn-accion {
+            background-color: var(--azul-bp);
+            color: var(--blanco);
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,98,177,0.2);
+        }
+
+        .btn-accion:active {
+            background-color: #004d8c;
+        }
+
+        .btn-naranja {
+            background-color: var(--naranja-bp);
+            box-shadow: 0 4px 6px rgba(226,133,55,0.2);
+        }
+
+        .btn-naranja:active {
+            background-color: #c97128;
+        }
+
+        /* Selector de perfiles exclusivo de simulación técnica */
+        .barra-simulacion {
+            display: flex;
+            justify-content: space-around;
+            background: #E9ECEF;
+            padding: 8px;
+            font-size: 0.8rem;
+            border-bottom: 1px solid #CED4DA;
+        }
+
+        .btn-perfil {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--gris-bp);
+            padding: 4px 10px;
+        }
+
+        .btn-perfil.activo {
+            color: var(--azul-bp);
+            border-bottom: 2px solid var(--azul-bp);
+        }
+
+        .oculto { display: none; }
+        
+        .card-detalle {
+            background: var(--blanco);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E0E0E0;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Selector de perfiles para desarrollo -->
+    <div class="barra-simulacion">
+        <button class="btn-perfil activo" onclick="cambiarVista('cliente')">👤 Perfil Cliente</button>
+        <button class="btn-perfil" onclick="cambiarVista('tecnico')">🔧 Perfil Técnico</button>
+        <button class="btn-perfil" onclick="cambiarVista('admin')">💼 Administración</button>
+    </div>
+
+    <header>
+        <!-- Tu logo real inyectado -->
+        <img src="https://ibb.co" alt="BP Climatizacion" class="logo-img">
+    </header>
+
+    <div class="container">
+
+        <!-- ================= PERFIL CLIENTE ================= -->
+        <div id="vista-cliente">
+            <h3 style="color: var(--gris-bp); margin-bottom: 5px;">Hola, Juan Carlos</h3>
+            <p style="color: gray; font-size: 0.85rem; margin-top: 0;">Seleccioná el equipo para ver opciones:</p>
+            
+            <div class="menu-capa" style="border-left-color: var(--naranja-bp);" onclick="mostrarOpcionesCliente('Ariston')">
+                <div class="flex-menu">
+                    <div>
+                        <h4 style="margin:0; color: var(--gris-bp);"><i class="fa-solid fa-fire" style="color: var(--naranja-bp);"></i> Caldera Casa</h4>
+                        <small style="color: gray;">Marca: Ariston</small>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color: #ccc;"></i>
+                </div>
+            </div>
+
+            <div class="menu-capa" style="border-left-color: var(--azul-bp);" onclick="mostrarOpcionesCliente('Pileta')">
+                <div class="flex-menu">
+                    <div>
+                        <h4 style="margin:0; color: var(--gris-bp);"><i class="fa-solid fa-water" style="color: var(--azul-bp);"></i> Caldera Pileta</h4>
+                        <small style="color: gray;">Sin marca registrada</small>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color: #ccc;"></i>
+                </div>
+            </div>
+
+            <div id="opciones-capa-cliente" class="oculto card-detalle">
+                <h4 id="titulo-equipo-cliente" style="margin-top:0; color: var(--azul-bp);"></h4>
+                <button class="btn-accion"><i class="fa-solid fa-user-gear"></i> Solicitar Servicio</button>
+                <button class="btn-accion btn-naranja" style="margin-top: 8px;"><i class="fa-solid fa-file-pdf"></i> Historial / Consolidado</button>
+            </div>
+        </div>
+
+        <!-- ================= PERFIL TÉCNICO ================= -->
+        <div id="vista-tecnico" class="oculto">
+            <h3 style="color: var(--gris-bp);">Órdenes de Trabajo Asignadas</h3>
+            
+            <div class="menu-capa" style="border-left-color: var(--naranja-bp);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="background: #FFEBE0; color: var(--naranja-bp); padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold;"><i class="fa-regular fa-clock"></i> 09:30 hs</span>
+                    <small style="color: gray;">Mantenimiento Preventivo</small>
+                </div>
+                <h4 style="margin: 10px 0 5px 0;">Carlos Mendoza</h4>
+                <p style="margin: 0; font-size: 0.9rem; color: var(--gris-bp);"><i class="fa-solid fa-location-dot"></i> Av. Siempre Viva 742</p>
+                <p style="margin: 5px 0 0 0; font-size: 0.85rem; color: gray;">Equipo: Caldera Ariston</p>
+                
+                <div style="margin-top: 15px;">
+                    <button class="btn-accion btn-naranja" onclick="alert('Mensaje de WhatsApp automático enviado al cliente: En camino 🚀')">
+                        <i class="fa-solid fa-truck-fast"></i> En Camino (Aviso WhatsApp)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PERFIL ADMINISTRACIÓN ================= -->
+        <div id="vista-admin" class="oculto">
+            <h3 style="color: var(--gris-bp);">Panel Administrativo</h3>
+            <div class="menu-capa"><h4><i class="fa-solid fa-boxes-stacked" style="color: var(--azul-bp);"></i> Control de Stock y Repuestos</h4></div>
+            <div class="menu-capa"><h4><i class="fa-solid fa-calculator" style="color: var(--naranja-bp);"></i> Modificar % Mano de Obra</h4></div>
+            <div class="menu-capa"><h4><i class="fa-solid fa-user-check" style="color: var(--azul-bp);"></i> Habilitar Técnicos Nuevos</h4></div>
+        </div>
+
+    </div>
+
+    <script>
+        function cambiarVista(perfil) {
+            document.getElementById('vista-cliente').classList.add('oculto');
+            document.getElementById('vista-tecnico').classList.add('oculto');
+            document.getElementById('vista-admin').classList.add('oculto');
+            
+            document.querySelectorAll('.btn-perfil').forEach(btn => btn.classList.remove('activo'));
+            
+            if(perfil === 'cliente') document.getElementById('vista-cliente').classList.remove('oculto');
+            if(perfil === 'tecnico') document.getElementById('vista-tecnico').classList.remove('oculto');
+            if(perfil === 'admin') document.getElementById('vista-admin').classList.remove('oculto');
+            
+            event.target.classList.add('activo');
+        }
+
+        function mostrarOpcionesCliente(tipo) {
+            const capa = document.getElementById('opciones-capa-cliente');
+            const titulo = document.getElementById('titulo-equipo-cliente');
+            capa.classList.remove('oculto');
+            
+            if(tipo === 'Ariston') {
+                titulo.innerHTML = "🔥 Caldera Casa (Ariston)";
+            } else {
+                titulo.innerHTML = " Pool Caldera Pileta";
+            }
+            capa.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
